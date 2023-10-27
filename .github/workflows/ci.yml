@@ -1,0 +1,45 @@
+name: CI
+on:
+  merge_group:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+env:
+  GO_VERSION: 1.19
+
+jobs:
+  lint_chart:
+    name: Lint Helm Chart
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace version
+        id: replace_version
+        run: find . -type f -name "values.yaml" -o -name "Chart.yaml" |
+          xargs sed -i -e s/latest/v1.0.0-${{ github.sha }}/g
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3.5
+        with:
+          version: v3.8.1
+
+      - uses: actions/setup-python@v4.7.0
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.4.0
+
+      - name: Add Bitnami Repository
+        run: helm repo add bitnami https://charts.bitnami.com/bitnami
+
+      - name: Add Aqua Security Repository
+        run: helm repo add aquasecurity https://aquasecurity.github.io/helm-charts
+
+      - name: Run chart-testing (lint)
+        run: ct lint --debug --config charts/testing.yaml
