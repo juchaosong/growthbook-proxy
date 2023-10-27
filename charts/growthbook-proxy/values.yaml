@@ -14,27 +14,15 @@ imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
 
-env:
-  - name: SECRET_API_KEY
-    value: ''
-  - name: GROWTHBOOK_API_HOST
-    value: ''
-  - name: NODE_ENV
-    value: 'production'
-  - name: CACHE_ENGINE
-    value: 'memory'
-  - name: CACHE_CONNECTION_URL
-    value: ''
-  - name: CACHE_STALE_TTL
-    value: '60'
-  - name: CACHE_EXPIRES_TTL
-    value: '120'
-  - name: USE_HTTP2
-    value: 'false'
-  - name: HTTPS_CERT
-    value: ''
-  - name: HTTPS_KEY
-    value: ''
+apiKey: ''
+apiHost: ''
+cacheEngine: 'memory'
+cacheConnectionUrl: ''
+cacheStaleTtl: '60'
+cacheExpiresTtl: '120'
+useHttp2: 'false'
+httpsCert: ''
+httpsKey: ''
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -62,7 +50,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 80
+  port: 3300
 
 ingress:
   enabled: false
