@@ -14,15 +14,60 @@ imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
 
+# GrowthBook API key (settings -> api keys)
 apiKey: ''
-apiHost: ''
+# GrowthBook API instance, default is cloud
+apiHost: 'https://api.growthbook.io'
+# One of: memory, redis, or mongo
 cacheEngine: 'memory'
+# The URL of your Redis or Mongo Database
 cacheConnectionUrl: ''
+# Number of seconds until a cache entry is considered stale (default is 60 = 1 minute)
 cacheStaleTtl: '60'
-cacheExpiresTtl: '120'
+# Number of seconds until a cache entry is expired (default is 600 = 10 minutes)
+cacheExpiresTtl: '600'
+
+# Remote Evaluation: true to enable remote evaluation (on by default)
+enableRemoteEval: true
+
+# Although we recommend terminating SSL using your load balancer, you can also configure the GrowthBook Proxy to handle SSL termination directly. It supports HTTP/2 by default, which is required for high performance streaming.
 useHttp2: 'false'
+# The SSL certificate
 httpsCert: ''
+# The SSL key
 httpsKey: ''
+
+maxPayloadSize: '2mb'
+verboseDebugging: false
+
+# Redis-specific options for cluster mode:
+# (Note that CACHE_CONNECTION_URL is ignored when using cluster mode)
+redisCluster:
+  enabled: false
+  # simple: comma-separated URLs to your cluster seed nodes
+  redisRootNodes: ''
+  # advanced: JSON array of ClusterNode objects (ioredis)
+  redisRootNodesJson: {}
+  # advanced: JSON object of ClusterOptions (ioredis)
+  redisOptionsJson: {}
+
+mongoDb:
+  enabled: false
+  databaseName: ''
+  collectionName: ''
+
+# Requires Redis
+# For horizontally scaled GrowthBook Proxy clusters, we provide a basic mechanism for keeping your proxy instances in sync, which uses Redis Pub/Sub. To use this feature, you must use Redis as your cache engine and set the following option:
+horizontalScaling:
+  publishPayloadToChannel: false
+
+# Streaming; enabled by default
+streaming:
+  enabled: true
+  # The maximum duration of a SSE connection before the client is forced to reconnect (default is 60000 = 1 minute)
+  maxDuration: 60000
+  # The interval between SSE "ping" messages sent to the client (default is 30000 = 30 seconds)
+  pingInterval: 30000
 
 serviceAccount:
   # Specifies whether a service account should be created
