@@ -45,9 +45,12 @@ spec:
               path: /healthcheck
               port: http
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3300
+            timeoutSeconds: 1
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
