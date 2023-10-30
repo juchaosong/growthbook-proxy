@@ -26,7 +26,7 @@ The following table lists the configurable parameters of the Growthbook-proxy ch
 | `cacheStaleTtl` |  | `"60"` |
 | `cacheExpiresTtl` |  | `"600"` |
 | `enableRemoteEval` |  | `"true"` |
-| `useHttp2` |  | `"false"` |
+| `useHttp2` |  | `false` |
 | `httpsCert` |  | `""` |
 | `httpsKey` |  | `""` |
 | `maxPayloadSize` |  | `"2mb"` |
@@ -49,7 +49,7 @@ The following table lists the configurable parameters of the Growthbook-proxy ch
 | `podSecurityContext` |  | `{}` |
 | `securityContext` |  | `{}` |
 | `service.type` |  | `"ClusterIP"` |
-| `service.port` |  | `3300` |
+| `service.port` |  | `80` |
 | `ingress.enabled` |  | `false` |
 | `ingress.className` |  | `""` |
 | `ingress.annotations` |  | `{}` |
