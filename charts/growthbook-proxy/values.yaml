@@ -33,7 +33,7 @@ cacheExpiresTtl: '600'
 enableRemoteEval: 'true'
 
 # Although we recommend terminating SSL using your load balancer, you can also configure the GrowthBook Proxy to handle SSL termination directly. It supports HTTP/2 by default, which is required for high performance streaming.
-useHttp2: false
+useHttp2: true
 # The SSL certificate
 httpsCert: ''
 # The SSL key
@@ -49,9 +49,11 @@ redisCluster:
   # simple: comma-separated URLs to your cluster seed nodes
   redisRootNodes: ''
   # advanced: JSON array of ClusterNode objects (ioredis)
-  redisRootNodesJson: {}
+  redisRootNodesJson:
+    {}
   # advanced: JSON object of ClusterOptions (ioredis)
-  redisOptionsJson: {}
+  redisOptionsJson:
+    {}
 
 mongoDb:
   enabled: false

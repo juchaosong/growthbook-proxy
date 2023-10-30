@@ -26,7 +26,7 @@ The following table lists the configurable parameters of the Growthbook-proxy ch
 | `cacheStaleTtl` |  | `"60"` |
 | `cacheExpiresTtl` |  | `"600"` |
 | `enableRemoteEval` |  | `"true"` |
-| `useHttp2` |  | `false` |
+| `useHttp2` |  | `true` |
 | `httpsCert` |  | `""` |
 | `httpsKey` |  | `""` |
 | `maxPayloadSize` |  | `"2mb"` |
